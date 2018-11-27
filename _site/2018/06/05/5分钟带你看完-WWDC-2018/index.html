@@ -431,18 +431,38 @@
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/05/05/Xcode%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%AE%A1%E7%90%86/" data-toggle="tooltip" data-placement="top" title="Xcode命令行工具管理">
-                        Previous<br>
-                        <span>Xcode命令行工具管理</span>
+                    
+                    <li class="next">
+                        <a href="/2018/11/24/sass%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/" data-toggle="tooltip" data-placement="top" title="sass控制语句和自定义函数">
+                        Next<br>
+                        <span>sass控制语句和自定义函数</span>
                         </a>
                     </li>
-                    
                     
                 </ul>
 
 
                 <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
+                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
+                <script src="/js/md5.min.js"></script>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: 'f2c84e7629bb1446c1a4',
+                    clientSecret: 'ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d',
+                    repo: 'singagain.github.io',
+                    owner: 'singagain',
+                    admin: ['singagain'],
+                    distractionFreeMode: true,
+                    id: md5(location.pathname),
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
                 
                 <!-- Gitalk end -->
 
@@ -486,174 +506,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
         				
-                            
-                				<a href="/tags/#iOS" title="iOS" rel="33">
-                                    iOS
-                                </a>
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#开发技巧" title="开发技巧" rel="7">
-                                    开发技巧
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Debug" title="Debug" rel="2">
-                                    Debug
-                                </a>
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#Obj-C" title="Obj-C" rel="3">
-                                    Obj-C
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Xcode" title="Xcode" rel="10">
-                                    Xcode
-                                </a>
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#ReactiveCocoa" title="ReactiveCocoa" rel="2">
-                                    ReactiveCocoa
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#函数式编程" title="函数式编程" rel="2">
-                                    函数式编程
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#开源框架" title="开源框架" rel="2">
-                                    开源框架
-                                </a>
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#Runtime" title="Runtime" rel="2">
-                                    Runtime
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#生活" title="生活" rel="5">
-                                    生活
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Blog" title="Blog" rel="2">
-                                    Blog
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Mac" title="Mac" rel="8">
-                                    Mac
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#效率" title="效率" rel="3">
-                                    效率
-                                </a>
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#终端" title="终端" rel="7">
-                                    终端
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#Git" title="Git" rel="5">
-                                    Git
-                                </a>
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#Swift" title="Swift" rel="9">
-                                    Swift
-                                </a>
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#CocoaPods" title="CocoaPods" rel="2">
-                                    CocoaPods
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#zsh" title="zsh" rel="2">
-                                    zsh
-                                </a>
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#开源库" title="开源库" rel="2">
-                                    开源库
-                                </a>
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#ruby" title="ruby" rel="3">
-                                    ruby
-                                </a>
-                            
-        				
-                            
-                				<a href="/tags/#shell" title="shell" rel="2">
-                                    shell
-                                </a>
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-        				
-                            
-                				<a href="/tags/#健身" title="健身" rel="3">
-                                    健身
-                                </a>
                             
         				
                             
