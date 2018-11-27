@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Every failure is leading towards success.">
+    <meta name="keywords"  content="DJ, 提莫的博客, dingjuan, 丁娟, iOS, Apple, iPhone">
+    <meta name="theme-color" content="#000000">
+    
+    <title>提莫的博客 | Teemo's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Safari Webpage Icon    by-BY -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/page4/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Teemo's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/Teemo-Classic-Original.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Teemo's Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">Thinking will not overcome fear but action will.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/2017/02/22/%E4%BD%BF%E7%94%A8-.gitignore-%E5%BF%BD%E7%95%A5-git-%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6/">
+        <h2 class="post-title">
+            使用 .gitignore 忽略 Git 仓库中的文件
+        </h2>
+        
+        <h3 class="post-subtitle">
+            .gitignore 文件在Git中的使用
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  使用 .gitignore 文件忽略指定文件
+
+
+.gitignore
+
+在Git中，很多时候你只想将代码提交到仓库，而不是将当前文件目录下的文件全部提交到Git仓库中，例如在MacOS系统下面的.DS_Store文件，或者是Xocde的操作记录，又或者是pod库的中一大串的源代码。这种情况下使用.gitignore就能够在Git提交时自动忽略掉这些文件。
+
+忽略的格式
+
+
+  # :...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 22, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/22/Mac-%E6%96%87%E4%BB%B6%E7%9A%84%E9%9A%90%E8%97%8F%E4%B8%8E%E6%98%BE%E7%A4%BA/">
+        <h2 class="post-title">
+            Mac 文件的隐藏与显示
+        </h2>
+        
+        <h3 class="post-subtitle">
+            使用终端 显示/隐藏 文件
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  让 Finder 显示隐藏文件和文件夹
+
+
+基本
+
+显示
+
+$ defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
+
+
+隐藏
+
+$ defaults write com.apple.finder AppleShowAllFiles -boolean false ; killal...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 22, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/16/Git-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A/">
+        <h2 class="post-title">
+            Git 代码回滚
+        </h2>
+        
+        <h3 class="post-subtitle">
+            回滚代码的正确姿势
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  并不适合阅读的个人文档。
+
+
+git revert 和 git reset 的区别
+先看图：
+
+
+
+sourceTree 中 revert 译为提交回滚，作用为忽略你指定的版本，然后提交一个新的版本。新的版本中已近删除了你所指定的版本。
+
+reset 为 重置到这次提交，将内容重置到指定的版本。git reset 命令后面是需要加2种参数的：–-hard 和 –-soft。这条命令默认...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 16, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/15/Mac-%E6%96%87%E6%9C%AC%E8%BD%AC%E9%9F%B3%E9%A2%91/">
+        <h2 class="post-title">
+            Mac 文本转音频
+        </h2>
+        
+        <h3 class="post-subtitle">
+            在Mac终端上将文本文件转换为音频文件
+        </h3>
+        
+        <div class="post-content-preview">
+            文本转语音
+
+
+  分享一条在Mac上将一个文本转换为音频文件的终端命令，个人认为还是蛮实用的。
+
+  来自: http://25.io/toau/
+
+
+
+
+指令:
+
+cat sample.txt | say -o sample.aiff
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 15, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/15/Git%E6%8C%87%E4%BB%A4%E6%95%B4%E7%90%86/">
+        <h2 class="post-title">
+            Git指令整理
+        </h2>
+        
+        <h3 class="post-subtitle">
+            不适合阅读的整理的一些个人常用的 Git 指令
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  随便整理的一些自用的Git指令
+
+
+GitHub创建仓库提示代码
+
+echo "# 项目名" &gt;&gt; README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:qiubaiying/项目名.git
+git push -u orig...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 15, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/14/%E9%9A%8F%E4%BE%BF%E8%81%8A%E8%81%8A/">
+        <h2 class="post-title">
+            随便聊聊
+        </h2>
+        
+        <h3 class="post-subtitle">
+            2017 情人节快乐~
+        </h3>
+        
+        <div class="post-content-preview">
+            随便谈谈
+
+今天是情人节，首先祝大家情人节快乐~
+
+在这特殊的节日里，我特意花了半天的时间，我将在简书中的文章都搬到 BY Blog 上，顺便又修改了下博客框架。
+
+关于分享
+
+最近有很多人来请教我关于建站的问题，我都花时间为其解答一一解答。
+
+感觉在解答别人的问题时，你自己也能学到很多新的知识，同时能沉浸其中。
+
+我想这就是分享的魔力吧。
+
+所以，把问题都砸过来吧~
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 14, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/06/Mac%E5%BF%AB%E9%80%9F%E8%B0%83%E5%87%BA%E7%BB%88%E7%AB%AF/">
+        <h2 class="post-title">
+            Mac 快速调出终端
+        </h2>
+        
+        <h3 class="post-subtitle">
+            在Mac下为终端设置快捷键
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  在Mac下快速调出终端的方法是：为终端添加一个快捷键打开方式
+
+
+为终端添加一个快捷键打开方式
+
+打开Mac下自带的软件 Automator
+
+
+
+新建文稿
+
+
+
+创建一个服务
+
+
+
+
+
+
+
+修改框内的脚本
+
+on run {input, parameters}
+	tell application "Terminal"
+		reopen
+		activate
+	end tell
+end...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 6, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/06/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+        <h2 class="post-title">
+            快速搭建个人博客
+        </h2>
+        
+        <h3 class="post-subtitle">
+            手把手教你在半小时内搭建自己的个人博客(如果不踩坑的话🙈🙊🙉)
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  正所谓前人栽树，后人乘凉。
+
+  感谢Huxpro提供的博客模板
+
+  我的的博客
+
+
+前言
+从 Jekyll 到 GitHub Pages 中间踩了许多坑，终于把我的个人博客BY Blog搭建出来了。。。
+
+本教程针对的是不懂技术又想搭建个人博客的小白，操作简单暴力且快速。当然懂技术那就更好了。
+
+看看看博客的主页样式：
+
+
+
+在手机上的布局：
+
+
+
+废话不多说了，开始进入正文。
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 6, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/04/Hello-2017/">
+        <h2 class="post-title">
+            Hello 2017
+        </h2>
+        
+        <h3 class="post-subtitle">
+            "Hello World, Hello Blog"
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  “🙉🙉🙉 ”
+
+
+前言
+
+BY 的 Blog 就这么开通了。
+
+本来打算在年前完成 Blog 的搭建，不曾料想踩了很多坑。。。
+
+跳过废话，直接看技术实现 
+
+2017 年，BY Blog 总算是搭建好了。
+
+最开始写博客是在简书这个平台上，简书确实不错，支持markdown在线编辑。
+
+在一次偶然间，听到我的好基友 阳阳 想搭建个人主页，觉得作为一个程序员，是应该倒腾倒腾自己的Blo...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 4, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/04/Objective-C-Runtime-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">
+            Objective-C Runtime 基本使用
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Runtime 使用案例
+        </h3>
+        
+        <div class="post-content-preview">
+            前言
+
+
+  在上一篇文章《Objective-C Runtime详解》中我们探讨了Runtime的基本原理，这篇文章我们将总结一下Runtime的一些基本使用
+
+
+使用方法
+
+
+  查询方法
+  给分类添加属性
+  更换代码的实现方法
+  动态添加方法
+  字典转属性
+
+
+准备
+
+先创建两个类
+
+ClassA.h
+
+#import &lt;Foundation/Foundation.h&g...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by BY on February 4, 2017
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/page3">&larr; Newer Posts</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="/page5">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                                <a href="/tags/#iOS" title="iOS" rel="33">
+                                    iOS
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#开发技巧" title="开发技巧" rel="7">
+                                    开发技巧
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Debug" title="Debug" rel="2">
+                                    Debug
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#Obj-C" title="Obj-C" rel="3">
+                                    Obj-C
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Xcode" title="Xcode" rel="10">
+                                    Xcode
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#ReactiveCocoa" title="ReactiveCocoa" rel="2">
+                                    ReactiveCocoa
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#函数式编程" title="函数式编程" rel="2">
+                                    函数式编程
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#开源框架" title="开源框架" rel="2">
+                                    开源框架
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#Runtime" title="Runtime" rel="2">
+                                    Runtime
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#生活" title="生活" rel="5">
+                                    生活
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Blog" title="Blog" rel="2">
+                                    Blog
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Mac" title="Mac" rel="8">
+                                    Mac
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#效率" title="效率" rel="3">
+                                    效率
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#终端" title="终端" rel="7">
+                                    终端
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Git" title="Git" rel="5">
+                                    Git
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#Swift" title="Swift" rel="9">
+                                    Swift
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#CocoaPods" title="CocoaPods" rel="2">
+                                    CocoaPods
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#zsh" title="zsh" rel="2">
+                                    zsh
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#开源库" title="开源库" rel="2">
+                                    开源库
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#ruby" title="ruby" rel="3">
+                                    ruby
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#shell" title="shell" rel="2">
+                                    shell
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#健身" title="健身" rel="3">
+                                    健身
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <a href="/about">
+                                <img src="/img/teemo.jpg"/>
+                            </a>
+                        
+                        
+                            <p>The best preparation for tomorrow is doing your best today.</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            <!-- add jianshu add target = "_blank" to <a> by BY -->
+                            
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/1afb00a2741e">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.zhihu.com/people/tao-tie-68-30-66">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.facebook.com/singagain">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/singagain">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                        
+                            <p>✉️ dingjuanxx@163.com</p>
+                        
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://zhengwuyang.com">WY</a></li>
+                    
+                        <li><a href="https://www.jianshu.com/u/1afb00a2741e">简书</a></li>
+                    
+                        <li><a href="https://apple.com">Apple</a></li>
+                    
+                        <li><a href="https://developer.apple.com/">Apple Developer</a></li>
+                    
+                </ul>
+                
+    		</div>
+        
+	</div>
+</div>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/1afb00a2741e">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/tao-tie-68-30-66">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/singagain">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/singagain">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Teemo's Blog 2018
+                    <br>
+                    Theme on <a href="https://github.com/singagain/singagain.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=singagain&repo=singagain.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-90855596-1';
+    var _gaDomain = 'auto';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'b50bf2b12b5338a1845e33832976fd68';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
