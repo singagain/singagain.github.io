@@ -288,10 +288,22 @@ if(!norunFlag){
 				$.ajax({
 					type: 'POST',
 					url: talkAPI,
-					data: {
-						"info":info_,
-						"userid":userid_
+					data: 
+					{
+						"perception": {
+							"inputText": {
+								"text": info_
+							}
+						},
+						"userInfo": {
+							"apiKey": '55cb1728e880446aa712366bf2826f2f',
+							"userId": userid_
+						}
 					},
+					// {
+					// 	"info":info_,
+					// 	"userid":userid_
+					// },
 					success: function(res) {
 						if(res.code !== 100000){
 							talkValTimer();
