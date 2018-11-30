@@ -299,6 +299,7 @@ if(!norunFlag){
 					// 	"userid":userid_
 					// },
 					success: function(res) {
+						console.log(res);
 						if(res.code !== 100000){
 							talkValTimer();
 							showMessage('似乎有什么错误，请和站长联系！',0);
@@ -306,7 +307,7 @@ if(!norunFlag){
 							talkValTimer();
 							showMessage(res.text,0);
 						}
-						console.log(res);
+						
 						$('#AIuserText').val("");
 						sessionStorage.setItem("live2duser", userid_);
 					}
