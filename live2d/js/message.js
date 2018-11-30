@@ -288,7 +288,9 @@ if(!norunFlag){
 				$.ajax({
 					type: 'GET',
 					url: talkAPI,   
-					dataType: "jsonp",
+					// dataType: "jsonp",
+					dataType: "JSON",
+                	jsonP: "callback",
 					data:{
 						'key': '55cb1728e880446aa712366bf2826f2f',
 						'info':info_,
