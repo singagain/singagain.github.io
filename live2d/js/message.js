@@ -287,7 +287,7 @@ if(!norunFlag){
 				showMessage('思考中~', 0);
 				$.ajax({
 					type: 'POST',
-					url: talkAPI,
+					url: talkAPI,   
 					dataType: "jsonp",
 					data:{
 						'key': '55cb1728e880446aa712366bf2826f2f',
