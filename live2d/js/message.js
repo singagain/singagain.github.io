@@ -288,6 +288,7 @@ if(!norunFlag){
 				$.ajax({
 					type: 'POST',
 					url: talkAPI,
+					dataType: "jsonp",
 					data: 
 					{
 						"perception": {
