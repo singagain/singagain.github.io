@@ -6,7 +6,7 @@
         },
 		{
             "selector": "#showTalkBtn",
-            "text": ["要和我聊天吗？"]
+            "text": ["要和我聊天吗？"]   
         },
 		{
             "selector": "#hideButton",
