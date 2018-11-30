@@ -289,17 +289,10 @@ if(!norunFlag){
 					type: 'POST',
 					url: talkAPI,
 					dataType: "jsonp",
-					data: 
-					{
-						"perception": {
-							"inputText": {
-								"text": info_
-							}
-						},
-						"userInfo": {
-							"apiKey": '55cb1728e880446aa712366bf2826f2f',
-							"userId": userid_
-						}
+					data:{
+						'key': '55cb1728e880446aa712366bf2826f2f',
+						'info':info_,
+						'userid': userid_
 					},
 					// {
 					// 	"info":info_,
