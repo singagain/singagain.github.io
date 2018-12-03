@@ -280,31 +280,49 @@ if(!norunFlag){
 					showMessage('写点什么吧！',0);
 					return;
 				}
+
+	// // 获取谷歌浏览器版本
+	// function getChromeVersion() {
+	// 	var arr = navigator.userAgent.split(' '); 
+	// 	var chromeVersion = '';
+	// 	for(var i=0;i < arr.length;i++){
+	// 		if(/chrome/i.test(arr[i]))
+	// 		chromeVersion = arr[i]
+	// 	}
+	// 	if(chromeVersion){
+	// 		return Number(chromeVersion.split('/')[1].split('.')[0]);
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
+	// if(getChromeVersion()) {
+	// 	var version = getChromeVersion();
+	// 	if(version < 32) {
+	// 		alert('您使用的谷歌浏览器版本过低，为了更好地体验请将浏览器升级到最新版本！');
+	// 	}
+	// }
 				if(userid_ == ""){
 					showMessage('聊之前请告诉我你的名字吧！',0);
 					return;
 				}
 				showMessage('思考中~', 0);
 				$.ajax({
-					type: 'POST',
-					url: talkAPI,
-					data: 
-					{
-						"perception": {
-							"inputText": {
-								"text": info_
-							}
-						},
-						"userInfo": {
-							"apiKey": '55cb1728e880446aa712366bf2826f2f',
-							"userId": userid_
-						}
+					type: 'GET',
+					url: talkAPI,   
+					// dataType: "jsonp",
+					dataType: "JSON",
+                	jsonP: "callback",
+					data:{
+						'key': '55cb1728e880446aa712366bf2826f2f',
+						'info':info_,
+						'userid': userid_
 					},
 					// {
 					// 	"info":info_,
 					// 	"userid":userid_
 					// },
 					success: function(res) {
+						// console.log(res);
 						if(res.code !== 100000){
 							talkValTimer();
 							showMessage('似乎有什么错误，请和站长联系！',0);
@@ -312,7 +330,7 @@ if(!norunFlag){
 							talkValTimer();
 							showMessage(res.text,0);
 						}
-						// console.log(res);
+						
 						$('#AIuserText').val("");
 						sessionStorage.setItem("live2duser", userid_);
 					}

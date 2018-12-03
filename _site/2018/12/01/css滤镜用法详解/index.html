@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Every failure is leading towards success.">
+    <meta name="keywords"  content="DJ, 提莫的博客, dingjuan, 丁娟, iOS, Apple, iPhone">
+    <meta name="theme-color" content="#000000">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    
+    <title>css滤镜用法详解 - 提莫的博客 | Teemo's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Safari Webpage Icon    by-BY -->
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2018/12/01/css%E6%BB%A4%E9%95%9C%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <link rel="stylesheet" href="/live2d/css/live2d.css" />
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Teemo's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-digital-native.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-digital-native.jpg')
+    }
+
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
+                        
+                        <a class="tag" href="/tags/#前端知识" title="前端知识">前端知识</a>
+                        
+                        <a class="tag" href="/tags/#滤镜" title="滤镜">滤镜</a>
+                        
+                    </div>
+                    <h1>css滤镜用法详解</h1>
+                    
+                    
+                    <h2 class="subheading">css滤镜用法详解</h2>
+                    
+                    <span class="meta">Posted by Teemo on December 1, 2018</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="css-滤镜-css样式表是一种为超文本标签语言提供增强补充服务的技术可对每一个html的标签做精雕细刻的修饰">CSS 滤镜 CSS样式表是一种为超文本标签语言提供增强补充服务的技术，可对每一个html的标签做精雕细刻的修饰。</h1>
+
+<p>只用html制作的网页，对页面内各部分的修饰能力有限且语句烦锁，样式表正是弥补这一缺陷的有力技术，它语句文法简单，只要在源码中插入style语句就可轻易实现页面内任意文本颜色、背景、边框、行距、字距的添删和修饰等功能，使网页更加生动活泼，从而获得满意的效果。当然，样式表的强大还依靠的就是它的滤镜功能。</p>
+
+<p>因为有了滤镜，大家就可以轻易地创造出“专业”的艺术效果。</p>
+
+<h2 id="什么是样式表滤镜-说到滤镜其实它并不是对图像进行了什么处理而是在浏览器中对使用了该属性的对象进行一定的修饰">什么是样式表滤镜 说到滤镜，其实它并不是对图像进行了什么处理，而是在浏览器中对使用了该属性的对象进行一定的修饰。</h2>
+
+<p>样式表滤镜实际上是样式表一个新的扩展部分，使用这种技术简单的语法就可以把可视化的滤镜和转换效果添加到一个标准的html元素上，例如图片、文本、以及其他一些对象，为页面添加一些丰富的变化。如果大家有一些脚本语言的基础，能够把滤镜效果与类似javascript的脚本代码做一些结合，就可以拥有一个在样式表滤镜与脚本共同作用下建立的强大的动态交互文档工具。</p>
+
+<p>现在能使用的滤镜有13个之多，不过要欣赏到这些滤镜的特效，必须要求用户的浏览器必须在IE4.0/NC6.0之上，因为只有这些版本的浏览器才能支持样式表滤镜效果。</p>
+
+<h2 id="常用的样式表滤镜-随着样式表技术的不断成熟其滤镜功能和种类也在不断增多">常用的样式表滤镜 随着样式表技术的不断成熟，其滤镜功能和种类也在不断增多。</h2>
+
+<p>如果用户能够熟练地混合使用它们，将可以产生意想不到的效果。在操作上，用户只需要了解具体滤镜的实际效果后，就能根据实际进行微调了。</p>
+
+<p>为了使大家能有针对性地使用滤镜，下面就把一些常用滤镜的功能和参数详细介绍如下：</p>
+
+<h3 id="1滤镜-作用该滤镜可以实现各种溶入效果如果大家将该滤镜与网页脚本语言结合起来对滤镜的参数进行处理的话就能很轻易地做出淡入淡出的效果来">1、滤镜 作用：该滤镜可以实现各种溶入效果，如果大家将该滤镜与网页脚本语言结合起来，对滤镜的参数进行处理的话，就能很轻易地做出淡入淡出的效果来。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{FILTER：ALPHA(opacity=opacity，finishopacity=finishopacity， style=style，startx=startx，starty=starty，finishx=finishx，finishy=finishy)} 
+
+参数：Opacity参数代表图象的起始透明度，其默认的数值是从0到100，0代表完全透明，100代表完全不透明；FinishOpacity是一个可选参数，如果想要设置渐变的透明效果，就可以使用他们来指定结束时的透明度，作用范围也是0到100；Style表示透明区域的形状特征，其中“0”代表统一形状，“1”代表线形。“2”代表放射状，“3”代表矩形；startx表示渐变透明效果开始处的X坐标，starty代表渐变透明效果开始处的Y坐标，finishx代表渐变透明效果结束处的X坐标，finishy代表渐变透明效果结束处的Y坐标。 ###2、模糊滤镜 作用：该滤镜主要是让图象产生一种模糊效果。 
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:blur(add=add，direction=direction，strength=strength)} 
+
+参数：该滤镜主要包括三个参数，其中add是用来指定图象是否被改变成印象派的模糊效果，模糊效果是按顺时针的方向进行的，它的数值应该是ture或false；direction参数是用来设置模糊的方向的，其中0度代表垂直向上，每45度为一个单位，默认值是向左的270度；strength 参数代表有多少像素的宽度将受到模糊影响，缺省的参数值是5个像素，而且该参数值只能使用整数来指定。 
+
+</code></pre></div></div>
+<h3 id="3斜影滤镜-作用该滤镜主要是为对象建立轮廓的影子效果的它可以在指定的方向建立物体的投影">3、斜影滤镜 作用：该滤镜主要是为对象建立轮廓的影子效果的，它可以在指定的方向建立物体的投影；</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:shadow(color=color,direction=direction)} 
+
+参数：斜影滤镜只有两个参数，其中color代表投影的底色，该数值是用英文字母来代替的，例如投影底色是红色的话，就应该设置color=red;direction参数是用来设置投影方向的，如果该数值是0的话，就代表垂直投影，此外该数值每45度为一个单位，它的默认值是向左的270度。 ###4、发光滤镜 作用：该滤镜可以给图象或者文字产生一种发光效果；
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+语法：{filter:glow(color=color,strength=strength)} 
+
+参数：该滤镜的color参数与阴影滤镜的color参数功能几乎是一样的，不过这里的color参数是用来设置发光颜色的;strength参数是用来指定发光强度的，其值为1到255之间的任何整数。
+</code></pre></div></div>
+<h3 id="5灯光滤镜-作用灯光滤镜是模拟光源来投射文字或者图象使图象和文字能产生一定的投射效果">5、灯光滤镜 作用：灯光滤镜是模拟光源来投射文字或者图象，使图象和文字能产生一定的投射效果；</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:light} 
+
+参数：一旦为对象定义了“light"滤镜属性后，大家就可以调用它的“方法(Method)"来设置或者改变属性，该滤镜可用的方法有：AddAmbient方法是用来加入包围光源的，AddCone方法是用来加入锥形光源的，MoveLight方法是用来移动光源的，Changstrength方法是用来改变光源强度的，Changcolor方法是用来改变光的颜色的，Clear方法是用来清除所有光源的。
+</code></pre></div></div>
+<h3 id="6遮罩滤镜-作用该滤镜可以为对象建立一个覆盖于表面的膜其效果就象戴着有色眼镜看物体一样">6、遮罩滤镜 作用：该滤镜可以为对象建立一个覆盖于表面的膜，其效果就象戴着有色眼镜看物体一样。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法： {filter:mask(color=color)} 
+参数：该滤镜的color参数表示覆盖对象表面的颜色，例如如果遮罩颜色为绿色，那么就应该设置color=blue。 
+</code></pre></div></div>
+<h3 id="7阴影滤镜-作用阴影滤镜就是给对象添加阴影效果其工作原理是建立一个偏移量加上色彩">7、阴影滤镜 作用：阴影滤镜就是给对象添加阴影效果，其工作原理是建立一个偏移量，加上色彩。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:dropshadow(color=color,offx=offx,offy=offy,positive=positive)} 
+
+参数：该滤镜中的Color参数表示投射阴影的颜色，offx 表示水平方向阴影的偏移量，offy 表示竖直方向阴影的偏移量，Positive参数是一个布尔值，其数值如果为TRUE，就为任何的非透明像素建立可见的投影，如果为FASLE，就为透明的像素部分建立透明效果。
+</code></pre></div></div>
+<h3 id="8灰度滤镜-作用该滤镜主要是将图象对象转换成灰度形式显示">8、灰度滤镜 作用：该滤镜主要是将图象对象转换成灰度形式显示。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:gray} 
+参数：该滤镜没有参数。 ###9、翻转滤镜 作用：翻转滤镜主要是实现图象对象的水平或者竖直翻转效果。
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:filph} {filter:filpv} 
+参数：这种滤镜也不带参数，其中{filter:filph}是实现水平翻转的，{filter:filpv} 是实现竖直翻转的。
+</code></pre></div></div>
+<h3 id="10x光滤镜-作用x光滤镜可以让对象反映出它的轮廓并把这些轮廓加亮">10、X光滤镜 作用：X光滤镜可以让对象反映出它的轮廓并把这些轮廓加亮。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法： {filter:xray} 
+参数：该滤镜本身不含有参数。 
+</code></pre></div></div>
+<h3 id="11倒置滤镜-作用使用该滤镜可以把包括色彩饱和度和亮度值等对象的可视化属性全部翻转">11、倒置滤镜 作用：使用该滤镜可以把包括色彩、饱和度、和亮度值等对象的可视化属性全部翻转。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法： {filter:invert} 
+参数：该滤镜没有参数。
+</code></pre></div></div>
+<h3 id="12波纹滤镜-作用波纹滤镜可以在水平和竖直方向利用正弦波打乱图象使图象产生水波效果">12、波纹滤镜 作用：波纹滤镜可以在水平和竖直方向利用正弦波打乱图象，使图象产生水波效果。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:wave(add=add,freq=freq,lightstrength=strength,phase=phase,strength=strength)} 
+参数：该滤镜的add参数是一个布尔数值，它是用来表示是否要把对象按照波形样式打乱；
+
+freq参数是用来设置波纹频率的，也就是指定在对象上一共需要产生多少个完整的波纹；
+
+lightstrength参数可以设置波纹光影的增强效果的，其数值范围在0到100之间；
+
+phase参数是用来设置正弦波的偏移量的，strength是设置正弦波的振幅大小的。
+
+ 在IE下使用的滤镜，可以实现很多不错的特效，但是在chrome和火狐opera等浏览器里这些就全都失效了，因为 滤镜只是属于IE浏览器开发下的功能，不支持IE内核的浏览器也就都不支持这些滤镜。 不过一般都支持透明滤镜，只是写法不一样，如下： 所以要都支持这个滤镜，就得两个都写上 
+ 
+</code></pre></div></div>
+<h3 id="二图片高级-透明图片">二、图片高级-透明图片</h3>
+<p>（一）网页上常用的图片格式（jpg,png,gif） 支持透明：gif，png(png8,png24,png32)</p>
+
+<p>（二）网页上的图片形式（插入图片和背景图）</p>
+
+<p>（三）插入图片透明 ###三、网页上常用的图片格式</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1)jpg:有损压缩格式，靠损失图片本身的质量来减小图片的体积，适用于颜色丰富的图像;(像素点组成的，像素点越多会越清晰 )
+
+2）gif：有损压缩格式，靠损失图片的色彩数量来减小图片的体积，支持透明，支持动画，适用于颜色数量较少的图像;
+
+3)png:有损压缩格式，损失图片的色彩数量来减小图片的体积，支持透明，不支持动画，是fireworks的 源文件格式，适用于颜色数量较少的图像; 
+</code></pre></div></div>
+
+<h3 id="a图片背景透明-gif支持-png8支持建议使用-png24ie6不支持其它内核浏览器支持ps制作-png32ie6不支持其它内核浏览器支持-b图片本身透明-png24ie6不支持ps制作可用filter兼容-png32ie6不支持可用filter兼容">A.图片背景透明： .gif：支持 .png8：支持(建议使用) .png24:IE6不支持，其它内核浏览器支持（PS制作) .png32：IE6不支持，其它内核浏览器支持 ###B.图片本身透明 .png24:IE6不支持（ps制作)，可用filter兼容, .png32：IE6不支持，可用filter兼容。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>半透明插入图片兼容IE6做法:（使用png32或PS制作的png24半透明图片）：
+ 样式：
+&lt;style type="text/css"&gt;
+.alpha{display:none;_display:inline-block;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader
+(src="图片路径",sizingMethod="scale");width:value;height:value;}
+.ie6hidden{_display:none;}
+&lt;/style&gt;
+结构：
+&lt;span class="alpha"&gt;&lt;/span&gt;
+&lt;img class="ie6hidden" src="" /&gt;
+</code></pre></div></div>
+
+<h3 id="参考">参考</h3>
+
+<ul>
+  <li><a href="https://www.css88.com/archives/8259">使用 CSS 实现图片的滤镜效果</a>
+subtitle:    css滤镜用法详解
+date:       2018-12-1
+author:     Teemo
+header-img: img/post-bg-digital-native.jpg
+catalog: true
+tags:
+    <ul>
+      <li>CSS</li>
+      <li>前端知识</li>
+      <li>
+        <h2 id="滤镜">滤镜</h2>
+        <h1 id="css-滤镜-css样式表是一种为超文本标签语言提供增强补充服务的技术可对每一个html的标签做精雕细刻的修饰-1">CSS 滤镜 CSS样式表是一种为超文本标签语言提供增强补充服务的技术，可对每一个html的标签做精雕细刻的修饰。</h1>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>只用html制作的网页，对页面内各部分的修饰能力有限且语句烦锁，样式表正是弥补这一缺陷的有力技术，它语句文法简单，只要在源码中插入style语句就可轻易实现页面内任意文本颜色、背景、边框、行距、字距的添删和修饰等功能，使网页更加生动活泼，从而获得满意的效果。当然，样式表的强大还依靠的就是它的滤镜功能。</p>
+
+<p>因为有了滤镜，大家就可以轻易地创造出“专业”的艺术效果。</p>
+
+<h2 id="什么是样式表滤镜-说到滤镜其实它并不是对图像进行了什么处理而是在浏览器中对使用了该属性的对象进行一定的修饰-1">什么是样式表滤镜 说到滤镜，其实它并不是对图像进行了什么处理，而是在浏览器中对使用了该属性的对象进行一定的修饰。</h2>
+
+<p>样式表滤镜实际上是样式表一个新的扩展部分，使用这种技术简单的语法就可以把可视化的滤镜和转换效果添加到一个标准的html元素上，例如图片、文本、以及其他一些对象，为页面添加一些丰富的变化。如果大家有一些脚本语言的基础，能够把滤镜效果与类似javascript的脚本代码做一些结合，就可以拥有一个在样式表滤镜与脚本共同作用下建立的强大的动态交互文档工具。</p>
+
+<p>现在能使用的滤镜有13个之多，不过要欣赏到这些滤镜的特效，必须要求用户的浏览器必须在IE4.0/NC6.0之上，因为只有这些版本的浏览器才能支持样式表滤镜效果。</p>
+
+<h2 id="常用的样式表滤镜-随着样式表技术的不断成熟其滤镜功能和种类也在不断增多-1">常用的样式表滤镜 随着样式表技术的不断成熟，其滤镜功能和种类也在不断增多。</h2>
+
+<p>如果用户能够熟练地混合使用它们，将可以产生意想不到的效果。在操作上，用户只需要了解具体滤镜的实际效果后，就能根据实际进行微调了。</p>
+
+<p>为了使大家能有针对性地使用滤镜，下面就把一些常用滤镜的功能和参数详细介绍如下：</p>
+
+<h3 id="1滤镜-作用该滤镜可以实现各种溶入效果如果大家将该滤镜与网页脚本语言结合起来对滤镜的参数进行处理的话就能很轻易地做出淡入淡出的效果来-1">1、滤镜 作用：该滤镜可以实现各种溶入效果，如果大家将该滤镜与网页脚本语言结合起来，对滤镜的参数进行处理的话，就能很轻易地做出淡入淡出的效果来。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{FILTER：ALPHA(opacity=opacity，finishopacity=finishopacity， style=style，startx=startx，starty=starty，finishx=finishx，finishy=finishy)} 
+
+参数：Opacity参数代表图象的起始透明度，其默认的数值是从0到100，0代表完全透明，100代表完全不透明；FinishOpacity是一个可选参数，如果想要设置渐变的透明效果，就可以使用他们来指定结束时的透明度，作用范围也是0到100；Style表示透明区域的形状特征，其中“0”代表统一形状，“1”代表线形。“2”代表放射状，“3”代表矩形；startx表示渐变透明效果开始处的X坐标，starty代表渐变透明效果开始处的Y坐标，finishx代表渐变透明效果结束处的X坐标，finishy代表渐变透明效果结束处的Y坐标。 ###2、模糊滤镜 作用：该滤镜主要是让图象产生一种模糊效果。 
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:blur(add=add，direction=direction，strength=strength)} 
+
+参数：该滤镜主要包括三个参数，其中add是用来指定图象是否被改变成印象派的模糊效果，模糊效果是按顺时针的方向进行的，它的数值应该是ture或false；direction参数是用来设置模糊的方向的，其中0度代表垂直向上，每45度为一个单位，默认值是向左的270度；strength 参数代表有多少像素的宽度将受到模糊影响，缺省的参数值是5个像素，而且该参数值只能使用整数来指定。 
+
+</code></pre></div></div>
+<h3 id="3斜影滤镜-作用该滤镜主要是为对象建立轮廓的影子效果的它可以在指定的方向建立物体的投影-1">3、斜影滤镜 作用：该滤镜主要是为对象建立轮廓的影子效果的，它可以在指定的方向建立物体的投影；</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:shadow(color=color,direction=direction)} 
+
+参数：斜影滤镜只有两个参数，其中color代表投影的底色，该数值是用英文字母来代替的，例如投影底色是红色的话，就应该设置color=red;direction参数是用来设置投影方向的，如果该数值是0的话，就代表垂直投影，此外该数值每45度为一个单位，它的默认值是向左的270度。 ###4、发光滤镜 作用：该滤镜可以给图象或者文字产生一种发光效果；
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+语法：{filter:glow(color=color,strength=strength)} 
+
+参数：该滤镜的color参数与阴影滤镜的color参数功能几乎是一样的，不过这里的color参数是用来设置发光颜色的;strength参数是用来指定发光强度的，其值为1到255之间的任何整数。
+</code></pre></div></div>
+<h3 id="5灯光滤镜-作用灯光滤镜是模拟光源来投射文字或者图象使图象和文字能产生一定的投射效果-1">5、灯光滤镜 作用：灯光滤镜是模拟光源来投射文字或者图象，使图象和文字能产生一定的投射效果；</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:light} 
+
+参数：一旦为对象定义了“light"滤镜属性后，大家就可以调用它的“方法(Method)"来设置或者改变属性，该滤镜可用的方法有：AddAmbient方法是用来加入包围光源的，AddCone方法是用来加入锥形光源的，MoveLight方法是用来移动光源的，Changstrength方法是用来改变光源强度的，Changcolor方法是用来改变光的颜色的，Clear方法是用来清除所有光源的。
+</code></pre></div></div>
+<h3 id="6遮罩滤镜-作用该滤镜可以为对象建立一个覆盖于表面的膜其效果就象戴着有色眼镜看物体一样-1">6、遮罩滤镜 作用：该滤镜可以为对象建立一个覆盖于表面的膜，其效果就象戴着有色眼镜看物体一样。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法： {filter:mask(color=color)} 
+参数：该滤镜的color参数表示覆盖对象表面的颜色，例如如果遮罩颜色为绿色，那么就应该设置color=blue。 
+</code></pre></div></div>
+<h3 id="7阴影滤镜-作用阴影滤镜就是给对象添加阴影效果其工作原理是建立一个偏移量加上色彩-1">7、阴影滤镜 作用：阴影滤镜就是给对象添加阴影效果，其工作原理是建立一个偏移量，加上色彩。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:dropshadow(color=color,offx=offx,offy=offy,positive=positive)} 
+
+参数：该滤镜中的Color参数表示投射阴影的颜色，offx 表示水平方向阴影的偏移量，offy 表示竖直方向阴影的偏移量，Positive参数是一个布尔值，其数值如果为TRUE，就为任何的非透明像素建立可见的投影，如果为FASLE，就为透明的像素部分建立透明效果。
+</code></pre></div></div>
+<h3 id="8灰度滤镜-作用该滤镜主要是将图象对象转换成灰度形式显示-1">8、灰度滤镜 作用：该滤镜主要是将图象对象转换成灰度形式显示。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:gray} 
+参数：该滤镜没有参数。 ###9、翻转滤镜 作用：翻转滤镜主要是实现图象对象的水平或者竖直翻转效果。
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:filph} {filter:filpv} 
+参数：这种滤镜也不带参数，其中{filter:filph}是实现水平翻转的，{filter:filpv} 是实现竖直翻转的。
+</code></pre></div></div>
+<h3 id="10x光滤镜-作用x光滤镜可以让对象反映出它的轮廓并把这些轮廓加亮-1">10、X光滤镜 作用：X光滤镜可以让对象反映出它的轮廓并把这些轮廓加亮。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法： {filter:xray} 
+参数：该滤镜本身不含有参数。 
+</code></pre></div></div>
+<h3 id="11倒置滤镜-作用使用该滤镜可以把包括色彩饱和度和亮度值等对象的可视化属性全部翻转-1">11、倒置滤镜 作用：使用该滤镜可以把包括色彩、饱和度、和亮度值等对象的可视化属性全部翻转。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法： {filter:invert} 
+参数：该滤镜没有参数。
+</code></pre></div></div>
+<h3 id="12波纹滤镜-作用波纹滤镜可以在水平和竖直方向利用正弦波打乱图象使图象产生水波效果-1">12、波纹滤镜 作用：波纹滤镜可以在水平和竖直方向利用正弦波打乱图象，使图象产生水波效果。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>语法：{filter:wave(add=add,freq=freq,lightstrength=strength,phase=phase,strength=strength)} 
+参数：该滤镜的add参数是一个布尔数值，它是用来表示是否要把对象按照波形样式打乱；
+
+freq参数是用来设置波纹频率的，也就是指定在对象上一共需要产生多少个完整的波纹；
+
+lightstrength参数可以设置波纹光影的增强效果的，其数值范围在0到100之间；
+
+phase参数是用来设置正弦波的偏移量的，strength是设置正弦波的振幅大小的。
+
+ 在IE下使用的滤镜，可以实现很多不错的特效，但是在chrome和火狐opera等浏览器里这些就全都失效了，因为 滤镜只是属于IE浏览器开发下的功能，不支持IE内核的浏览器也就都不支持这些滤镜。 不过一般都支持透明滤镜，只是写法不一样，如下： 所以要都支持这个滤镜，就得两个都写上 
+ 
+</code></pre></div></div>
+<h3 id="二图片高级-透明图片-1">二、图片高级-透明图片</h3>
+<p>（一）网页上常用的图片格式（jpg,png,gif） 支持透明：gif，png(png8,png24,png32)</p>
+
+<p>（二）网页上的图片形式（插入图片和背景图）</p>
+
+<p>（三）插入图片透明 ###三、网页上常用的图片格式</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1)jpg:有损压缩格式，靠损失图片本身的质量来减小图片的体积，适用于颜色丰富的图像;(像素点组成的，像素点越多会越清晰 )
+
+2）gif：有损压缩格式，靠损失图片的色彩数量来减小图片的体积，支持透明，支持动画，适用于颜色数量较少的图像;
+
+3)png:有损压缩格式，损失图片的色彩数量来减小图片的体积，支持透明，不支持动画，是fireworks的 源文件格式，适用于颜色数量较少的图像; 
+</code></pre></div></div>
+
+<h3 id="a图片背景透明-gif支持-png8支持建议使用-png24ie6不支持其它内核浏览器支持ps制作-png32ie6不支持其它内核浏览器支持">A.图片背景透明： .gif：支持 .png8：支持(建议使用) .png24:IE6不支持，其它内核浏览器支持（PS制作) .png32：IE6不支持，其它内核浏览器支持</h3>
+<h3 id="b图片本身透明-png24ie6不支持ps制作可用filter兼容-png32ie6不支持可用filter兼容">B.图片本身透明 .png24:IE6不支持（ps制作)，可用filter兼容, .png32：IE6不支持，可用filter兼容。</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>半透明插入图片兼容IE6做法:（使用png32或PS制作的png24半透明图片）：
+ 样式：
+&lt;style type="text/css"&gt;
+.alpha{display:none;_display:inline-block;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader
+(src="图片路径",sizingMethod="scale");width:value;height:value;}
+.ie6hidden{_display:none;}
+&lt;/style&gt;
+结构：
+&lt;span class="alpha"&gt;&lt;/span&gt;
+&lt;img class="ie6hidden" src="" /&gt;
+</code></pre></div></div>
+
+<h3 id="参考-1">参考</h3>
+
+<ul>
+  <li><a href="https://www.css88.com/archives/8259">使用 CSS 实现图片的滤镜效果</a></li>
+</ul>
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/11/24/sass%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/" data-toggle="tooltip" data-placement="top" title="sass控制语句和自定义函数">
+                        Previous<br>
+                        <span>sass控制语句和自定义函数</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                <!--Gitalk评论start  -->
+                
+                <!-- 引入Gitalk评论插件  -->
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+                <div id="gitalk-container"></div>
+                <!-- 引入一个生产md5的js，用于对id值进行处理，防止其过长 -->
+                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
+                <script src="/js/md5.min.js"></script>
+                <script type="text/javascript">
+                    var gitalk = new Gitalk({
+                    clientID: 'f2c84e7629bb1446c1a4',
+                    clientSecret: 'ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d',
+                    repo: 'singagain.github.io',
+                    owner: 'singagain',
+                    admin: ['singagain'],
+                    distractionFreeMode: true,
+                    id: md5(location.pathname),
+                    });
+                    gitalk.render('gitalk-container');
+                </script>
+                
+                <!-- Gitalk end -->
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+        				
+                            
+                				<a href="/tags/#前端知识" title="前端知识" rel="2">
+                                    前端知识
+                                </a>
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://zhengwuyang.com">WY</a></li>
+                    
+                        <li><a href="https://www.jianshu.com/u/1afb00a2741e">简书</a></li>
+                    
+                        <li><a href="https://apple.com">Apple</a></li>
+                    
+                        <li><a href="https://developer.apple.com/">Apple Developer</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "djzfx";
+    var disqus_identifier = "/2018/12/01/css滤镜用法详解";
+    var disqus_url = "http://localhost:4000/2018/12/01/css%E6%BB%A4%E9%95%9C%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        // BY Fix:去除标题前的‘#’ issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
+        // anchors.options = {
+        //   visible: 'always',
+        //   placement: 'right',
+        //   icon: '#'
+        // };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <!-- add jianshu add target = "_blank" to <a> by BY -->
+                    
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/1afb00a2741e">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://me.csdn.net/weixin_43466871">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">C</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/singagain">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/singagain">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Teemo's Blog 2018
+                    <br>
+                    Theme on <a href="https://github.com/singagain/singagain.github.io.git">GitHub</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=singagain&repo=singagain.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="landlord" style="left:5px;bottom:0px;">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
+        <div class="live_talk_input_body">
+            <div class="live_talk_input_name_body">
+                <input name="name" type="text" class="live_talk_name white_input" id="AIuserName" autocomplete="off" placeholder="你的名字" />
+            </div>
+            <div class="live_talk_input_text_body">
+                <input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off" placeholder="要和我聊什么呀？"/>
+                <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+            </div>
+        </div>
+        <input name="live_talk" id="live_talk" value="1" type="hidden" />
+        <div class="live_ico_box">
+            <div class="live_ico_item type_info" id="showInfoBtn"></div>
+            <div class="live_ico_item type_talk" id="showTalkBtn"></div>
+            <div class="live_ico_item type_music" id="musicButton"></div>
+            <div class="live_ico_item type_youdu" id="youduButton"></div>
+            <div class="live_ico_item type_quit" id="hideButton"></div>
+            <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+            <audio src="http://m10.music.126.net/20181203133350/1ea70d236afae22cf1c89034df9b1273/ymusic/8d9e/75eb/2d6f/76af90b7ba141b65b180d07447144757.mp3" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
+            <input name="live2dBGM" value="http://m10.music.126.net/20181203133350/1ea70d236afae22cf1c89034df9b1273/ymusic/8d9e/75eb/2d6f/76af90b7ba141b65b180d07447144757.mp3" type="hidden">
+            <input id="duType" value="douqilai,l2d_caihong" type="hidden">
+        </div>
+    </div>
+    <div id="open_live2d">召唤伊斯特瓦尔</div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+var message_Path = '/live2d/';//资源目录，如果目录不对请更改
+var talkAPI = "https://www.tuling123.com/openapi/api";//如果有类似图灵机器人的聊天接口请填写接口路径
+</script>
+<script type="text/javascript" src="live2d/js/live2d.js"></script>
+<script type="text/javascript" src="live2d/js/message.js"></script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-90855596-1';
+    var _gaDomain = 'auto';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'b50bf2b12b5338a1845e33832976fd68';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
