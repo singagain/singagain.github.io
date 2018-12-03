@@ -1,7 +1,7 @@
 var home_Path = document.location.protocol +'//' + window.document.location.hostname +'/';
 
 var userAgent = window.navigator.userAgent.toLowerCase();
-console.log(userAgent);
+// console.log(userAgent);
 var norunAI = [ "android", "iphone", "ipod", "ipad", "windows phone", "mqqbrowser" ,"msie","trident/7.0"];
 var norunFlag = false;
 
@@ -170,7 +170,7 @@ if(!norunFlag){
 					checkSleep();
 				},200);
 			}
-			console.log(sleepTimer_);
+			// console.log(sleepTimer_);
 		}
 	}
 	
@@ -322,7 +322,7 @@ if(!norunFlag){
 					// 	"userid":userid_
 					// },
 					success: function(res) {
-						console.log(res);
+						// console.log(res);
 						if(res.code !== 100000){
 							talkValTimer();
 							showMessage('似乎有什么错误，请和站长联系！',0);

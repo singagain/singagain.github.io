@@ -1,7 +1,7 @@
 var home_Path = document.location.protocol +'//' + window.document.location.hostname +'/';
 
 var userAgent = window.navigator.userAgent.toLowerCase();
-console.log(userAgent);
+// console.log(userAgent);
 var norunAI = [ "android", "iphone", "ipod", "ipad", "windows phone", "mqqbrowser" ,"msie","trident/7.0"];
 var norunFlag = false;
 
@@ -170,7 +170,7 @@ if(!norunFlag){
 					checkSleep();
 				},200);
 			}
-			console.log(sleepTimer_);
+			// console.log(sleepTimer_);
 		}
 	}
 	
@@ -312,7 +312,7 @@ if(!norunFlag){
 							talkValTimer();
 							showMessage(res.text,0);
 						}
-						console.log(res);
+						// console.log(res);
 						$('#AIuserText').val("");
 						sessionStorage.setItem("live2duser", userid_);
 					}

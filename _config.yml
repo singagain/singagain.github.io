@@ -19,7 +19,8 @@ sidebar-avatar: /img/teemo.jpg      # use absolute URL, seeing it's used in both
 # SNS settings
 RSS: false
 # weibo_username:     qiubaiying
-zhihu_username:     tao-tie-68-30-66
+# zhihu_username:     tao-tie-68-30-66
+csnd_username:  weixin_43466871
 github_username:    singagain
 facebook_username:  singagain
 jianshu_username:   1afb00a2741e
