@@ -365,10 +365,10 @@ if(!norunFlag){
 			$('#live2d_bgm')[0].volume = 0.5;
 			var live2dBGM_IsPlay = sessionStorage.getItem("live2dBGM_IsPlay");
 			var live2dBGM_WindowClose = sessionStorage.getItem("live2dBGM_WindowClose");
-			if(live2dBGM_IsPlay == '0' && live2dBGM_WindowClose == '0'){
-				$('#live2d_bgm')[0].play();
-				$('#musicButton').addClass('play');
-			}
+			// if(live2dBGM_IsPlay == '0' && live2dBGM_WindowClose == '0'){
+			// 	$('#live2d_bgm')[0].play();
+			// 	$('#musicButton').addClass('play');
+			// }自动播放？
 			sessionStorage.setItem("live2dBGM_WindowClose" , '1');
 			$('#musicButton').on('click',function(){
 				if($('#musicButton').hasClass('play')){
