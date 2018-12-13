@@ -6,6 +6,28 @@ var norunAI = [ "android", "iphone", "ipod", "ipad", "windows phone", "mqqbrowse
 var norunFlag = false;
 
 
+
+// $.ajax({
+// 	type: 'POST',
+// 	url: 'http://39.96.38.217:8080/proxy/aaa',   
+// 	// dataType: "jsonp",
+// 	// dataType: "JSON",
+// 	// jsonP: "callback",
+// 	// contentType: "application/json; charset=utf-8",
+// 	data:{
+//  		'info':'11111',
+// 		'userid': '22222'
+// 	},
+// 	success: function(res) {
+// 		console.log(JSON.parse(res).results[0].values.text);
+		
+// 	}
+// });
+
+
+
+   
+
 for(var i=0;i<norunAI.length;i++){
 	if(userAgent.indexOf(norunAI[i]) > -1){
 		norunFlag = true;
@@ -307,13 +329,12 @@ if(!norunFlag){
 				}
 				showMessage('思考中~', 0);
 				$.ajax({
-					type: 'GET',
+					type: 'POST',
 					url: talkAPI,   
 					// dataType: "jsonp",
-					dataType: "JSON",
-                	jsonP: "callback",
+					// dataType: "JSON",
+                	// jsonP: "callback",
 					data:{
-						'key': '55cb1728e880446aa712366bf2826f2f',
 						'info':info_,
 						'userid': userid_
 					},
@@ -328,7 +349,7 @@ if(!norunFlag){
 							showMessage('似乎有什么错误，请和站长联系！',0);
 						}else{
 							talkValTimer();
-							showMessage(res.text,0);
+							showMessage(JSON.parse(res).results[0].values.text,0);
 						}
 						
 						$('#AIuserText').val("");
@@ -365,10 +386,10 @@ if(!norunFlag){
 			$('#live2d_bgm')[0].volume = 0.5;
 			var live2dBGM_IsPlay = sessionStorage.getItem("live2dBGM_IsPlay");
 			var live2dBGM_WindowClose = sessionStorage.getItem("live2dBGM_WindowClose");
-			if(live2dBGM_IsPlay == '0' && live2dBGM_WindowClose == '0'){
-				$('#live2d_bgm')[0].play();
-				$('#musicButton').addClass('play');
-			}
+			// if(live2dBGM_IsPlay == '0' && live2dBGM_WindowClose == '0'){
+			// 	$('#live2d_bgm')[0].play();
+			// 	$('#musicButton').addClass('play');
+			// }自动播放？
 			sessionStorage.setItem("live2dBGM_WindowClose" , '1');
 			$('#musicButton').on('click',function(){
 				if($('#musicButton').hasClass('play')){
