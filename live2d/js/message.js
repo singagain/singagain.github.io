@@ -10,7 +10,7 @@ var norunFlag = false;
 // $.ajax({
 // 	type: 'POST',
 // 	url: 'http://39.96.38.217:8080/proxy/aaa',   
-// 	// dataType: "jsonp",
+// 	dataType: "jsonp",
 // 	// dataType: "JSON",
 // 	// jsonP: "callback",
 // 	// contentType: "application/json; charset=utf-8",
@@ -329,9 +329,9 @@ if(!norunFlag){
 				}
 				showMessage('思考中~', 0);
 				$.ajax({
-					type: 'POST',
+					type: 'GET',
 					url: talkAPI,   
-					// dataType: "jsonp",
+					dataType: "jsonp",
 					// dataType: "JSON",
                 	// jsonP: "callback",
 					data:{
