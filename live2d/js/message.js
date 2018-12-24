@@ -337,7 +337,7 @@ if(!norunFlag){
                 	// jsonP: "callback",
 					data:{
 						'info':info_,
-						'userid': '泰罗打怪兽'
+						'userid': '1111'
 					},
 					// {
 					// 	"info":info_,
@@ -355,7 +355,7 @@ if(!norunFlag){
 						
 						$('#AIuserText').val("");
 						// sessionStorage.setItem("live2duser", userid_);
-						sessionStorage.setItem("live2duser", '泰罗打怪兽');
+						sessionStorage.setItem("live2duser", '1111');
 					}
 				});
 			});
