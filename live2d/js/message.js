@@ -344,13 +344,13 @@ if(!norunFlag){
 					// },
 					success: function(res) {
 						// console.log(res);
-						if(res.code !== 100000){
-							talkValTimer();
-							showMessage('似乎有什么错误，请和站长联系！',0);
-						}else{
+						// if(res.code !== 100000){
+						// 	talkValTimer();
+						// 	showMessage('似乎有什么错误，请和站长联系！',0);
+						// }else{
 							talkValTimer();
 							showMessage(JSON.parse(res).results[0].values.text,0);
-						}
+						//  
 						
 						$('#AIuserText').val("");
 						sessionStorage.setItem("live2duser", userid_);
