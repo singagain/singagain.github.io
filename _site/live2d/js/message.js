@@ -323,10 +323,10 @@ if(!norunFlag){
 	// 		alert('您使用的谷歌浏览器版本过低，为了更好地体验请将浏览器升级到最新版本！');
 	// 	}
 	// }
-				if(userid_ == ""){
-					showMessage('聊之前请告诉我你的名字吧！',0);
-					return;
-				}
+				// if(userid_ == ""){
+				// 	showMessage('聊之前请告诉我你的名字吧！',0);
+				// 	return;
+				// }
 				showMessage('思考中~', 0);
 				$.ajax({
 					type: 'GET',

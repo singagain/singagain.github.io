@@ -297,7 +297,7 @@ if(!norunFlag){
 			});
 			$('#talk_send').on('click',function(){
 				var info_ = $('#AIuserText').val();
-				var userid_ = $('#AIuserName').val();
+				// var userid_ = $('#AIuserName').val();
 				if(info_ == "" ){
 					showMessage('写点什么吧！',0);
 					return;
@@ -328,7 +328,7 @@ if(!norunFlag){
 					return;
 				}
 				showMessage('思考中~', 0);
-				console.log(typeof(userid_))
+				// console.log(typeof(userid_))
 				$.ajax({
 					type: 'GET',
 					url: talkAPI,   
@@ -337,7 +337,7 @@ if(!norunFlag){
                 	// jsonP: "callback",
 					data:{
 						'info':info_,
-						'userid': userid_
+						'userid': '泰罗打怪兽'
 					},
 					// {
 					// 	"info":info_,
