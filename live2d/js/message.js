@@ -328,6 +328,7 @@ if(!norunFlag){
 					return;
 				}
 				showMessage('思考中~', 0);
+				console.log(typeof(userid_))
 				$.ajax({
 					type: 'GET',
 					url: talkAPI,   
