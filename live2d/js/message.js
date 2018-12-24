@@ -297,7 +297,7 @@ if(!norunFlag){
 			});
 			$('#talk_send').on('click',function(){
 				var info_ = $('#AIuserText').val();
-				// var userid_ = $('#AIuserName').val();
+				var userid_ = $('#AIuserName').val();
 				if(info_ == "" ){
 					showMessage('写点什么吧！',0);
 					return;
@@ -323,10 +323,10 @@ if(!norunFlag){
 	// 		alert('您使用的谷歌浏览器版本过低，为了更好地体验请将浏览器升级到最新版本！');
 	// 	}
 	// }
-				// if(userid_ == ""){
-				// 	showMessage('聊之前请告诉我你的名字吧！',0);
-				// 	return;
-				// }
+				if(userid_ == ""){
+					showMessage('聊之前请告诉我你的名字吧！',0);
+					return;
+				}
 				showMessage('思考中~', 0);
 				// console.log(typeof(userid_))
 				$.ajax({
@@ -354,8 +354,7 @@ if(!norunFlag){
 						//  
 						
 						$('#AIuserText').val("");
-						// sessionStorage.setItem("live2duser", userid_);
-						sessionStorage.setItem("live2duser", '1111');
+						sessionStorage.setItem("live2duser", userid_);
 					}
 				});
 			});
