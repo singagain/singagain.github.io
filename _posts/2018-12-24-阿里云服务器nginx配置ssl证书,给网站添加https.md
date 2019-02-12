@@ -3,7 +3,7 @@ layout:     post
 title:      阿里云服务器nginx配置ssl证书,给网站添加https
 subtitle:  阿里云服务器nginx配置ssl证书,给网站添加https
 date:       2018-12-24
-author:     BY
+author:     Teemo
 header-img: img/tag-bg-o.jpg
 catalog: true
 tags:
