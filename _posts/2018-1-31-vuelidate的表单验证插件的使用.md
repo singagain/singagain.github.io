@@ -2,7 +2,7 @@
 layout:     post
 title:     vuelidate的表单验证插件的使用
 subtitle:  vuelidate的表单验证插件的使用
-date:       2018-1-31
+date:       2019-1-31
 author:     Teemo
 header-img: img/tag-bg-o.jpg
 catalog: true
