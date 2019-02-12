@@ -62,8 +62,8 @@ disqus_username: djzfx
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: f2c84e7629bb1446c1a4                            #生成的clientID
-  clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
+  clientID: 7e466ad3fe229eadf8bf                          #生成的clientID
+  clientSecret: b26f878f1f2485764067cbfc25d73cba47b1acdd    #生成的clientSecret
   repo: singagain.github.io    #仓库名称
   owner: singagain   #github用户名
   admin: singagain
