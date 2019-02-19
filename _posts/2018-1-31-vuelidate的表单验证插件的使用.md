@@ -14,7 +14,7 @@ tags:
 
 在vue中，我们使用vuelidate实现表单验证，达到限制用户输入的目的，以及提交时验证表单的目的。
  [查看官方文档](https://monterail.github.io/vuelidate/)
- ### 第一步：安装
+### 第一步：安装
  可以通过npm安装
  ```
  	npm install vuelidate --save
