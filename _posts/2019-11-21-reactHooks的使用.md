@@ -30,7 +30,7 @@ function example(){
 }
 export default example
 ```
-###useEffect的使用
+### useEffect的使用
 在reactHoooks中如果需要使用生命周期，则要用到useEffect,
 ```js
 import React ,{ useState,useEffect} from 'react'
